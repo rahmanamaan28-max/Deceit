@@ -70,6 +70,7 @@ io.on('connection', (socket) => {
     game.players.forEach(p => {
       game.scores[p.id] = 0;
     });
+    game.isFinalRound = false;
 
     io.to(room).emit('gameStarted');
     startRound(room);
@@ -101,7 +102,33 @@ io.on('connection', (socket) => {
     }
   });
 
+  // New restart game handler
+  socket.on('restartGame', () => {
+    const room = getRoom(socket);
+    const game = rooms[room];
+    
+    if (!game || game.host !== socket.id) return;
+    
+    // Reset game state
+    game.scores = {};
+    game.players.forEach(p => {
+      game.scores[p.id] = 0;
+    });
+    game.round = 1;
+    game.isFinalRound = false;
+    
+    // Notify clients
+    io.to(room).emit('newGameStarted');
+    startRound(room);
+  });
+
   function tallyVotes(game, room) {
+    // Clear any existing vote timeout
+    if (game.voteTimeout) {
+      clearTimeout(game.voteTimeout);
+      game.voteTimeout = null;
+    }
+    
     const counts = {};
     Object.values(game.votes).forEach(id => {
       counts[id] = (counts[id] || 0) + 1;
@@ -119,6 +146,7 @@ io.on('connection', (socket) => {
     const imposterId = game.imposter;
     const imposterCaught = mostVotedId === imposterId;
     
+    // Award points
     game.players.forEach(p => {
       if (game.votes[p.id] === imposterId) {
         game.scores[p.id] = (game.scores[p.id] || 0) + 1;
@@ -129,13 +157,32 @@ io.on('connection', (socket) => {
       game.scores[imposterId] = (game.scores[imposterId] || 0) + 2;
     }
 
-    io.to(room).emit('showScores', game.players.map(p => ({
-      name: p.name,
-      score: game.scores[p.id] || 0
-    })));
-
+    // Check if this is the final round
+    const isFinalRound = game.round >= game.settings.rounds;
+    
+    // Find winner for final round
+    let winner = { name: '', score: -1 };
+    if (isFinalRound) {
+      game.players.forEach(p => {
+        if (game.scores[p.id] > winner.score) {
+          winner = { name: p.name, score: game.scores[p.id] };
+        }
+      });
+    }
+    
+    io.to(room).emit('showScores', {
+      scores: game.players.map(p => ({ 
+        name: p.name, 
+        score: game.scores[p.id] || 0 
+      })),
+      isFinalRound,
+      winner
+    });
+    
     game.round++;
-    if (game.round <= game.settings.rounds) {
+    
+    // Start next round only if not final
+    if (!isFinalRound) {
       setTimeout(() => startRound(room), 5000);
     }
   }
@@ -147,6 +194,7 @@ function startRound(room) {
   game.currentQuestion = question;
   game.answers = [];
   game.votes = {};
+  game.voteTimeout = null; // Reset vote timeout
 
   const imposterIndex = Math.floor(Math.random() * game.players.length);
   game.imposter = game.players[imposterIndex].id;
@@ -160,22 +208,51 @@ function startRound(room) {
     });
   });
 
+  // Answer phase timeout
   setTimeout(() => {
     io.to(room).emit('revealAnswers', {
       question: question.real,
       answers: game.answers
     });
 
+    // After 3 sec → discussion
     setTimeout(() => {
       io.to(room).emit('startDiscussion', {
         time: game.settings.discussionTime
       });
 
+      // Discussion phase timeout
       setTimeout(() => {
         io.to(room).emit('startVote', {
           players: game.players,
           time: game.settings.voteTime
         });
+
+        // Set timeout to automatically tally votes
+        game.voteTimeout = setTimeout(() => {
+          if (Object.keys(game.votes || {}).length > 0) {
+            // Only tally if at least one vote was submitted
+            tallyVotes(game, room);
+          } else {
+            // Skip to next round if no votes
+            game.round++;
+            if (game.round <= game.settings.rounds) {
+              startRound(room);
+            } else {
+              // Handle final round with no votes
+              const winner = { name: 'No one', score: 0 };
+              io.to(room).emit('showScores', {
+                scores: game.players.map(p => ({
+                  name: p.name,
+                  score: game.scores[p.id] || 0
+                })),
+                isFinalRound: true,
+                winner
+              });
+            }
+          }
+        }, game.settings.voteTime * 1000);
+
       }, game.settings.discussionTime * 1000);
 
     }, 3000);
