@@ -18,5 +18,205 @@
   {
     "real": "What was your first pet's name?",
     "fake": "What was your first teacher's name?"
+  },
+  {
+    "real": "One word to describe your best friend",
+    "fake": "One word to describe chocolate"
+  },
+  {
+    "real": "How many hours do you game daily?",
+    "fake": "Pick a number between 1-8"
+  },
+  {
+    "real": "How long could you survive in wilderness?",
+    "fake": "How many hours in 3 days?"
+  },
+  {
+    "real": "Your biggest pet peeve?",
+    "fake": "Name something people commonly dislike"
+  },
+  {
+    "real": "How many unread emails in your inbox?",
+    "fake": "How many sides on a cube?"
+  },
+  {
+    "real": "Your most-used emoji?",
+    "fake": "Name any fruit emoji"
+  },
+  {
+    "real": "How many siblings do you have?",
+    "fake": "Pick a number between 0-5"
+  },
+  {
+    "real": "Favorite childhood cartoon?",
+    "fake": "Name any Disney movie"
+  },
+  {
+    "real": "Hours of sleep you got last night?",
+    "fake": "How many hours until midnight?"
+  },
+  {
+    "real": "Your current phone battery percentage?",
+    "fake": "Pick a number between 10-100"
+  },
+  {
+    "real": "How many social media followers?",
+    "fake": "How many letters in 'Instagram'?"
+  },
+  {
+    "real": "Your go-to pizza topping?",
+    "fake": "Name a color in the Italian flag"
+  },
+  {
+    "real": "How long can you hold your breath?",
+    "fake": "How many seconds in a minute?"
+  },
+  {
+    "real": "Your most-played song this month?",
+    "fake": "Name any Weeknd song"
+  },
+  {
+    "real": "How many unread texts?",
+    "fake": "How many keys on a numpad?"
+  },
+  {
+    "real": "Your biggest fear?",
+    "fake": "Name something scary"
+  },
+  {
+    "real": "How many cups of coffee today?",
+    "fake": "How many teaspoons in a tablespoon?"
+  },
+  {
+    "real": "Your dream vacation spot?",
+    "fake": "Name any European country"
+  },
+  {
+    "real": "How many pairs of shoes you own?",
+    "fake": "Pick a number between 5-20"
+  },
+  {
+    "real": "Your favorite streaming service?",
+    "fake": "Name any video platform"
+  },
+  {
+    "real": "How long your shower took today?",
+    "fake": "How many minutes in an hour?"
+  },
+  {
+    "real": "Your most-used app yesterday?",
+    "fake": "Name any social media app"
+  },
+  {
+    "real": "How many books read this year?",
+    "fake": "How many Harry Potter books?"
+  },
+  {
+    "real": "Your comfort food?",
+    "fake": "Name something deep-fried"
+  },
+  {
+    "real": "How many languages you speak?",
+    "fake": "How many official UN languages?"
+  },
+  {
+    "real": "Your current screen time average?",
+    "fake": "Pick a number between 3-10 hours"
+  },
+  {
+    "real": "Favorite gaming console?",
+    "fake": "Name any PlayStation model"
+  },
+  {
+    "real": "How many browser tabs open?",
+    "fake": "How many primary colors?"
+  },
+  {
+    "real": "Your best subject in school?",
+    "fake": "Name a STEM field"
+  },
+  {
+    "real": "How many concerts attended?",
+    "fake": "How many strings on guitar?"
+  },
+  {
+    "real": "Your phone's current storage used?",
+    "fake": "Pick a percentage 50-95%"
+  },
+  {
+    "real": "Most-watched movie?",
+    "fake": "Name any Oscar winner"
+  },
+  {
+    "real": "How many days since last haircut?",
+    "fake": "How many weeks in July?"
+  },
+  {
+    "real": "Your go-to fast food?",
+    "fake": "Name any burger chain"
+  },
+  {
+    "real": "How many unplayed Steam games?",
+    "fake": "How many dots on dice?"
+  },
+  {
+    "real": "Your lucky number?",
+    "fake": "Pick a prime number under 20"
+  },
+  {
+    "real": "Current temperature outside?",
+    "fake": "Pick a number between 50-100"
+  },
+  {
+    "real": "Favorite ice cream flavor?",
+    "fake": "Name any chocolate brand"
+  },
+  {
+    "real": "How many skipped songs today?",
+    "fake": "How many notes in major scale?"
+  },
+  {
+    "real": "Your most expensive possession?",
+    "fake": "Name any Apple product"
+  },
+  {
+    "real": "How long to fall asleep?",
+    "fake": "How many minutes in 2 hours?"
+  },
+  {
+    "real": "Your birth month number?",
+    "fake": "Pick a number 1-12"
+  },
+  {
+    "real": "How many house plants?",
+    "fake": "How many planets in solar system?"
+  },
+  {
+    "real": "Your go-to coffee order?",
+    "fake": "Name any Starbucks size"
+  },
+  {
+    "real": "Current age?",
+    "fake": "Pick a number 18-35"
+  },
+  {
+    "real": "Your shoe size?",
+    "fake": "Pick a number 7-13"
+  },
+  {
+    "real": "How many streaming subscriptions?",
+    "fake": "How many Avengers in Endgame?"
+  },
+  {
+    "real": "Your favorite weather?",
+    "fake": "Name any precipitation type"
+  },
+  {
+    "real": "How many Discord servers?",
+    "fake": "How many Discord logo colors?"
+  },
+  {
+    "real": "Your most-used word?",
+    "fake": "Name any conjunction"
   }
 ]
